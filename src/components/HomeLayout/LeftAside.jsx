@@ -1,32 +1,15 @@
 
-
-const categories = [
-    "National",
-    "International",
-    "Sports",
-    "Entertainment",
-    "Culture",
-    "Politics",
-    "Health",
-    "Technology",
-];
+import { Suspense } from 'react';
+import Categories from '../categories/Categories';
 
 const LeftAside = () => {
     return (
-        <aside>
-            <h2 className="text-xl font-bold mb-4">All Category</h2>
+        <div>
+            <Suspense fallback={<span className="loading loading-spinner loading-xl"></span>}>
+                <Categories></Categories>
+            </Suspense>
 
-            <div className="flex flex-col gap-2">
-                {categories.map((category, index) => (
-                    <button
-                        key={index}
-                        className="btn btn-base-200 justify-start w-full"
-                    >
-                        {category}
-                    </button>
-                ))}
-            </div>
-        </aside>
+        </div>
     );
 };
 
