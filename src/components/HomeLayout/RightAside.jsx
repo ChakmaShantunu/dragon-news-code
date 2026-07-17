@@ -1,5 +1,6 @@
 
 import FindUs from './FindUs';
+import Qzone from './Qzone';
 import SocialLogin from './SocialLogin';
 
 const RightAside = () => {
@@ -7,6 +8,7 @@ const RightAside = () => {
         <div>
             <SocialLogin></SocialLogin>
             <FindUs></FindUs>
+            <Qzone></Qzone>
         </div>
     );
 };
