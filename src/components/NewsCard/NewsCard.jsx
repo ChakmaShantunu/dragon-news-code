@@ -10,7 +10,7 @@ const NewsCard = ({ news }) => {
     return (
         <div className="card bg-base-100 shadow-md p-5 rounded-xl">
             {/* Author */}
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center bg-base-200 p-5">
 
                 {/* Left */}
                 <div className="flex items-center gap-5">
