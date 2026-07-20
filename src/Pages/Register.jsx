@@ -6,7 +6,7 @@ import { use } from "react";
 
 const Register = () => {
 
-    const { createUser } = use(AuthContext);
+    const { createUser, setUser } = use(AuthContext);
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -19,7 +19,8 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                console.log(user.email);
+                setUser(user);
             })
             .catch((error) => {
                 console.log(error.message);
