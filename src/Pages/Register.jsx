@@ -1,8 +1,12 @@
 import { Link } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
+import { use } from "react";
 
 
 
 const Register = () => {
+
+    const { createUser } = use(AuthContext);
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -12,6 +16,15 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(name, photoUrl, email, password);
+        createUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                console.log(error.message);
+                alert(error.message);
+            })
     }
     return (
         <div className="flex justify-center min-h-screen items-center">
@@ -21,20 +34,20 @@ const Register = () => {
                     <fieldset className="fieldset">
                         {/* email */}
                         <label className="label">Name</label>
-                        <input name="name" type="text" className="input" placeholder="Name" />
+                        <input name="name" type="text" className="input" placeholder="Name" required />
 
                         {/* Photo Url */}
                         <label className="label">Photo URl</label>
-                        <input name="photo" type="text" className="input" placeholder="Photo URl" />
+                        <input name="photo" type="text" className="input" placeholder="Photo URl" required />
 
 
                         {/* Email */}
                         <label className="label">Email</label>
-                        <input name="email" type="email" className="input" placeholder="Email" />
+                        <input name="email" type="email" className="input" placeholder="Email" required />
 
 
                         <label className="label">Password</label>
-                        <input name="password" type="password" className="input" placeholder="Password" />
+                        <input name="password" type="password" className="input" placeholder="Password" required />
 
 
                         <div><a className="link link-hover">Forgot password?</a></div>
