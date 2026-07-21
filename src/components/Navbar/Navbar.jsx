@@ -1,10 +1,12 @@
 
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import userPerson from "../../assets/userPerson.png"
 import { use } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
 
     const { user, logOut } = use(AuthContext);
 
@@ -12,6 +14,7 @@ const Navbar = () => {
         logOut()
             .then(() => {
                 alert("You logged out");
+                navigate("/");
             })
             .catch((error) => {
                 alert(error.message);

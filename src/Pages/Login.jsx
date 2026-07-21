@@ -1,9 +1,11 @@
 import { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 
 
 const Login = () => {
+
+    const navigate = useNavigate();
 
     const { signInUser, setUser } = use(AuthContext);
 
@@ -16,6 +18,7 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 setUser(user);
+                navigate("/")
             })
             .catch((error) => {
                 alert(error.message);
