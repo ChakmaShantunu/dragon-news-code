@@ -6,10 +6,16 @@ import { AuthContext } from '../../provider/AuthProvider';
 
 const Navbar = () => {
 
-    const { user } = use(AuthContext);
+    const { user, logOut } = use(AuthContext);
 
     const handleLogout = () => {
-        console.log("log out done");
+        logOut()
+            .then(() => {
+                alert("You logged out");
+            })
+            .catch((error) => {
+                alert(error.message);
+            })
     }
 
     return (
