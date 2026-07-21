@@ -8,6 +8,10 @@ const Navbar = () => {
 
     const { user } = use(AuthContext);
 
+    const handleLogout = () => {
+        console.log("log out done");
+    }
+
     return (
         <div className='flex items-center justify-between gap-12 pt-12'>
             <div className=''>{user && user.email}</div>
@@ -18,9 +22,10 @@ const Navbar = () => {
             </div>
             <div className='login-btn flex items-center gap-2'>
                 <img src={userPerson} alt="" />
-                <Link to="/auth/login" className='btn btn-primary px-8'>Login</Link>
+                {/* <Link to="/auth/login" className='btn btn-primary px-8'>Login</Link> */}
+                {user ? <button onClick={handleLogout} className='btn btn-primary px-8'>Logout</button> : <Link to="/auth/login" className=' btn btn-primary px-8'>Login</Link>}
             </div>
-        </div>
+        </div >
     );
 };
 
