@@ -3,6 +3,7 @@ import { FaEye } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa6";
 import { CiShare2 } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
+import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
 
@@ -59,10 +60,11 @@ const NewsCard = ({ news }) => {
                 <p className={`mt-4 ${showFull ? "" : "line-clamp-4"}`}>
                     {news.details}
                 </p>
-                <button onClick={() => setShowFull(!showFull)} className="text-orange-500 font-semibold cursor-pointer">
+                {/* <button onClick={() => setShowFull(!showFull)} className="text-orange-500 font-semibold cursor-pointer">
                     {" "}
                     {showFull ? "Show less" : "Read More"}
-                </button>
+                </button> */}
+                <Link to={`/newsDetails/${news.id}`} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-orange-500 font-semibold cursor-pointer">Read More</Link>
             </div>
 
             {/* Footer */}
