@@ -1,9 +1,11 @@
-import { use } from "react";
+import { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 
 
 const Login = () => {
+
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,7 +25,10 @@ const Login = () => {
                 navigate(`${location.state ? location.state : "/"}`)
             })
             .catch((error) => {
-                alert(error.message);
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setError(errorCode);
+                // alert(error.message);
             })
     }
     return (
@@ -35,13 +40,15 @@ const Login = () => {
                     <fieldset className="fieldset">
                         {/* email */}
                         <label className="label">Email</label>
-                        <input name="email" type="email" className="input" placeholder="Email" />
+                        <input name="email" type="email" className="input" placeholder="Email" required />
 
                         {/* password */}
                         <label className="label">Password</label>
-                        <input name="password" type="password" className="input" placeholder="Password" />
+                        <input name="password" type="password" className="input" placeholder="Password" required />
 
                         <div><a className="link link-hover">Forgot password?</a></div>
+
+                        {error && <p className="text-red-400 text-xs">{error}</p>}
                         <button type="onsubmit" className="btn btn-neutral mt-4">Login</button>
                         <p className="font-semibold text-center">Don't have an account? <Link to="/auth/register" className="underline text-orange-500">Register</Link></p>
                     </fieldset>
