@@ -24,25 +24,25 @@ const Register = () => {
         const photoUrl = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photoUrl, email, password);
+        // console.log(name, photoUrl, email, password);
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
-                console.log(user.email);
+                // console.log(user.email);
                 updateUser({ displayName: name, photoURL: photoUrl, email: email })
                     .then(() => {
 
                         setUser({ ...user, displayName: name, photoURL: photoUrl, email: email });
                         navigate("/");
-                        console.log(user);
+                        // console.log(user);
                     })
                     .catch((error) => {
-                        console.log(error);
+                        alert(error);
                         setUser(user);
                     })
             })
             .catch((error) => {
-                console.log(error.message);
+                // console.log(error.message);
                 alert(error.message);
             })
     }
