@@ -30,7 +30,7 @@ const Navbar = () => {
                 <NavLink to="/career">Career</NavLink>
             </div>
             <div className='login-btn flex items-center gap-2'>
-                <img src={userPerson} alt="" />
+                <img src={user?.photoURL} alt="" />
                 {/* <Link to="/auth/login" className='btn btn-primary px-8'>Login</Link> */}
                 {user ? <button onClick={handleLogout} className='btn btn-primary px-8'>Logout</button> : <Link to="/auth/login" className=' btn btn-primary px-8'>Login</Link>}
             </div>

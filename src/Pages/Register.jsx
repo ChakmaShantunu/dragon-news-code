@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { use, useState } from "react";
 
@@ -6,8 +6,9 @@ import { use, useState } from "react";
 
 const Register = () => {
     const [nameError, setNameError] = useState("");
+    const navigate = useNavigate();
 
-    const { createUser, setUser } = use(AuthContext);
+    const { createUser, setUser, updateUser } = use(AuthContext);
 
     const handleRegister = (e) => {
 
@@ -28,7 +29,17 @@ const Register = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user.email);
-                setUser(user);
+                updateUser({ displayName: name, photoURL: photoUrl, email: email })
+                    .then(() => {
+
+                        setUser({ ...user, displayName: name, photoURL: photoUrl, email: email });
+                        navigate("/");
+                        console.log(user);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        setUser(user);
+                    })
             })
             .catch((error) => {
                 console.log(error.message);
